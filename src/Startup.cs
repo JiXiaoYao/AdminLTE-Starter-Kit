@@ -44,7 +44,8 @@ namespace Company.WebApplication1
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                //options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite("Data Source=sqlite.db"));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
@@ -94,6 +95,7 @@ namespace Company.WebApplication1
                     options.Conventions.AllowAnonymousToPage("/Account/ResetPassword");
                     options.Conventions.AllowAnonymousToPage("/Account/ResetPasswordConfirmation");
                     options.Conventions.AllowAnonymousToPage("/Account/SignedOut");
+                    options.Conventions.AllowAnonymousToPage("/");
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
